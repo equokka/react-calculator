@@ -6,9 +6,64 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.Calculator {
+  display: grid;
+  grid-template-areas:
+    "display display display display"
+    "0       clear   clear   equals"
+    "7       8       9       div"
+    "4       5       6       sub"
+    "1       2       3       add"
+    "dec     lparen  rparen  mul";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  --side: 120px;
+  --border: calc(var(--side) * .03);
+  --fontsize: calc(var(--side) * .6);
+  width: min-content;
+  line-height: var(--side);
+  font-size: var(--fontsize);
+  text-align: center;
+  border: var(--border) solid #433437;
+  margin: 1em auto 0 auto;
+  color: #433437;
+  user-select: none;
+}
+
+.Display {
+  grid-area: display;
+  text-align: right;
+  padding: 0 1ch;
+  background: #433437;
+  color: #fff;
+  user-select: text;
+}
+
+.Clear { grid-area: clear }
+
+.Calculator > * {
+  border: var(--border) solid #433437;
+}
+
+.Digit, .Operation {
+  width: var(--side);
+  height: var(--side);
+}
+
+.Operation {
+  background: #f2274f;
+  color: #fff;
+  font-weight: bold;
+}
+
+.Digit.click, .Clear.click {
+  background: #aaa;
+}
+
+.Operation.click {
+  background: #86162c
 }
